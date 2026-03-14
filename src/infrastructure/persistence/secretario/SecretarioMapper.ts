@@ -16,6 +16,8 @@ export class SecretarioMapper {
       row.tipo_dni,
       row.direccion,
       row.telefono,
+      row.email,
+      row.password,
       row.estado,
       row.creado_en,
       row.actualizado_en,

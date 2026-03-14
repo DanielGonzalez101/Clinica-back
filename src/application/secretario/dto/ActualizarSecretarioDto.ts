@@ -10,5 +10,6 @@ export interface ActualizarSecretarioDto {
   tipoDni?: string;
   direccion?: string;
   telefono?: string;
+  email?: string;
   estado?: string;
 }

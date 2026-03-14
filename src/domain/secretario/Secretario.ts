@@ -1,3 +1,5 @@
+// src/domain/secretario/Secretario.ts
+
 export class Secretario {
   constructor(
     public id: string,
@@ -11,8 +13,10 @@ export class Secretario {
     public tipoDni: string,
     public direccion: string,
     public telefono: string,
+    public email: string,
+    public password: string,
     public estado: string,
     public creadoEn: Date,
-    public actualizadoEn: Date
+    public actualizadoEn: Date,
   ) {}
 }

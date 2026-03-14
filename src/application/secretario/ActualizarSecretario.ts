@@ -30,6 +30,8 @@ export class ActualizarSecretario {
       dto.tipoDni ?? secretario.tipoDni,
       dto.direccion ?? secretario.direccion,
       dto.telefono ?? secretario.telefono,
+      dto.email ?? secretario.email,
+      secretario.password,
       dto.estado ?? secretario.estado,
       secretario.creadoEn,
       new Date(),

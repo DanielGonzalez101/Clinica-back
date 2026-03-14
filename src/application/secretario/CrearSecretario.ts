@@ -5,6 +5,7 @@ import { Secretario } from "../../domain/secretario/Secretario";
 import { SecretarioYaExiste } from "../../domain/secretario/exceptions/SecretarioYaExiste";
 import { CrearSecretarioDto } from "./dto/CrearSecretarioDto";
 import { randomUUID } from "crypto";
+import bcrypt from "bcrypt";
 
 export class CrearSecretario {
   constructor(private readonly repository: SecretarioRepository) {}
@@ -15,6 +16,8 @@ export class CrearSecretario {
     if (secretarioExistente) {
       throw new SecretarioYaExiste(dto.dni);
     }
+
+    const passwordHash = await bcrypt.hash(dto.password, 10);
 
     const secretario = new Secretario(
       randomUUID(),
@@ -28,6 +31,8 @@ export class CrearSecretario {
       dto.tipoDni,
       dto.direccion,
       dto.telefono,
+      dto.email,
+      passwordHash,
       "activo",
       new Date(),
       new Date(),

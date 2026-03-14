@@ -1,4 +1,5 @@
-// dto/CrearSecretarioDto.ts
+// src/application/secretario/dto/CrearSecretarioDto.ts
+
 export interface CrearSecretarioDto {
   rol: string;
   primerNombre: string;
@@ -10,4 +11,6 @@ export interface CrearSecretarioDto {
   tipoDni: string;
   direccion: string;
   telefono: string;
+  email: string;
+  password: string;
 }

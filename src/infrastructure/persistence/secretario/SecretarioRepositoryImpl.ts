@@ -1,4 +1,4 @@
-// src/infrastructure/persistence/secretario/SecretarioPostgresRepository.ts
+// src/infrastructure/persistence/secretario/SecretarioRepositoryImpl.ts
 
 import { pool } from "../../../config/database";
 import { SecretarioRepository } from "../../../domain/secretario/SecretarioRepository";
@@ -9,8 +9,8 @@ export class SecretarioRepositoryImpl implements SecretarioRepository {
   async crear(secretario: Secretario): Promise<Secretario> {
     const result = await pool.query(
       `INSERT INTO secretarios 
-        (id, rol, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, edad, dni, tipo_dni, direccion, telefono, estado, creado_en, actualizado_en)
-       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
+        (id, rol, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, edad, dni, tipo_dni, direccion, telefono, email, password, estado, creado_en, actualizado_en)
+       VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
        RETURNING *`,
       [
         secretario.id,
@@ -24,6 +24,8 @@ export class SecretarioRepositoryImpl implements SecretarioRepository {
         secretario.tipoDni,
         secretario.direccion,
         secretario.telefono,
+        secretario.email,
+        secretario.password,
         secretario.estado,
         secretario.creadoEn,
         secretario.actualizadoEn,
@@ -68,9 +70,10 @@ export class SecretarioRepositoryImpl implements SecretarioRepository {
         tipo_dni = $7,
         direccion = $8,
         telefono = $9,
-        estado = $10,
-        actualizado_en = $11
-       WHERE id = $12
+        email = $10,
+        estado = $11,
+        actualizado_en = $12
+       WHERE id = $13
        RETURNING *`,
       [
         secretario.primerNombre,
@@ -82,6 +85,7 @@ export class SecretarioRepositoryImpl implements SecretarioRepository {
         secretario.tipoDni,
         secretario.direccion,
         secretario.telefono,
+        secretario.email,
         secretario.estado,
         secretario.actualizadoEn,
         secretario.id,
